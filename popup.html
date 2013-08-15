@@ -1,0 +1,131 @@
+<html>
+<meta charset="utf-8">
+<style>
+body {
+border-width: 0px;
+background: #414141;
+font-family: "Trebuchet MS", sans;
+font-size: 14px;
+
+}
+
+#comments {
+width: 300px;
+max-height: 480px;
+overflow-y: auto;
+overflow-x: hidden;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+border: 1px solid green;
+background: url(images/background1.png);
+}
+
+.loader {
+width: 100px;
+height: 50px;
+position: absolute;
+top: 40	%;
+left: 100px;
+display: none;
+}
+
+.buttons {
+text-align: center;
+}
+
+.nickName {
+color: #8f8f8f;
+}
+
+.avatar {
+margin-left: 5px;
+margin-right: 5px;
+margin-top: 3px;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+width: 36px;
+height: 36px;
+}
+
+a {
+color: #1eb4e8;
+text-decoration: none;
+}
+
+.avat {
+font-weight: bold;
+line-height: 20px;
+}
+
+.avatarName {
+display: block;
+
+margin-top: -36px;
+margin-left: 45px;
+}
+
+hr {
+margin-top: 5px;
+margin-bottom: 5px;
+background-color: #8f8f8f;
+height: 1px;
+border: none;
+}
+
+.toSH {
+text-align: center;
+font-weight: bolder;
+font-size: 12px;
+}
+
+.text {
+font-size: 15px;
+margin-left: 8px;
+font-weight: 100;
+font-size: 13px;
+line-height: 1.4;
+}
+
+.min {
+width: 30px;
+height: 30px;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+margin-left: 100px;
+}
+
+.minT {
+margin-bottom: -24px;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+#but {
+width: 100px; 
+height: 45px; 
+font-size: 40px; 
+margin-top: 0px;
+background: #fff000;
+border-radius: 10px;
+border-width: 0px;
+-webkit-border-radius: 10px;
+}
+</style>
+<h2 style="text-align: center; color: #a4a4a4; margin-bottom: 0px;">Прямой эфир</h2>
+<div id="comments"></div>
+<br>
+<div class="buttons">
+<button value="Кнопка" id="but" style="">↺</button>
+</div>
+<script type="text/javascript" src="js/up.js"></script> 
+</html>

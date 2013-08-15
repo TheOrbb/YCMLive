@@ -1,0 +1,31 @@
+{
+	"manifest_version": 2,
+	"name": "YouComedy Live",
+	"description": "YouComedy Live Comments",
+	"version": "1.0.1",
+
+	"permissions": [
+		"http://*/",
+		"contextMenus",
+		"tabs",
+		"webNavigation"
+	],
+
+	"browser_action": {
+		"default_icon": "images/logo.png",
+		"default_popup": "popup.html"
+	},
+
+	"content_scripts":[{  
+		"matches": ["http://youcomedy.me/add"],
+		"js": ["js/up.js", "js/YoutubeToYCM.js"]
+	}],
+
+	"background": {
+		"scripts": ["js/back.js"]
+	},
+
+	"icons": {
+		"16": "images/menu_icon2.png"
+	}
+}
