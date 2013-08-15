@@ -1,5 +1,0 @@
-<script>
-var pat = new RegExp("^http://()");
-var text="http://www.youtube.com/watch?v=4SyMy-H_QW0";
-alert(text.replace(pat, "http://add2ycm.$1"));
-</script>
