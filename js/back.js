@@ -72,3 +72,23 @@ chrome.tabs.onUpdated.addListener(function(a, b, tab) {  //встраивани�
 		}
 	}
 });
+
+var timer=chrome.alarms.create("timeUp", {periodInMinutes: 0.5}); //таймер обновления
+
+chrome.alarms.onAlarm.addListener(function(al) {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", "http://youcomedy.me/commentfeed", true);
+	xhr.onreadystatechange = function() {
+		if(xhr.status == 200)
+		{
+			var tmpData=JSON.parse(xhr.responseText);
+			var lastData=JSON.parse(localStorage.getItem('ycmExt__feed'));
+			if(tmpData.data[1].id != lastData.data[1].id)
+			{
+				chrome.browserAction.setBadgeText({text: ""+(tmpData.data[1].id-lastData.data[1].id) });
+			}
+		}
+	}
+	xhr.send();
+});
+

@@ -58,6 +58,7 @@ function updateData(init){
 				case 200:
 					grot.set('feed', xhr.responseText);
 					init && updateView(grot.get('feed')['data']);
+					chrome.browserAction.setBadgeText({text: ""});
 					break;
 				default:
 					break;
