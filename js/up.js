@@ -83,7 +83,7 @@ function updateView(data){
 				text: data[i]['text'].replace(re, 'http://youcomedy.me$1'),
 				userAvatar: data[i]['userAvatar'] || 'http://static.youcomedy.me/img/profile/avatar_small.png',
 				item_small_image: data[i]['item_small_image'] || 'http://youcomedy.me/common/img/items/aa.jpg'
-			})
+			});
 		}
 		
 		document.getElementById('comments').innerHTML = text;
@@ -99,6 +99,6 @@ function updateFeed(init){
 
 //init
 updateFeed(true);
-updateInterval = setInterval(updateFeed, 30000);
+updateInterval = setInterval(updateFeed, 15000);
 
 })();
