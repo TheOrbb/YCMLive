@@ -54,16 +54,14 @@ function updateData(init){
 	xhr.open('GET', 'http://youcomedy.me/commentfeed', true);
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState == 4){
-			switch(xhr.status){
-				case 200:
+			if(xhr.status==200){
 					grot.set('feed', xhr.responseText);
 					init && updateView(grot.get('feed')['data']);
 					chrome.browserAction.setBadgeText({text: ""});
 					document.getElementById('loader').style.display="none";
-					break;
-				default:
-					document.getElementById('loader').style.display="none";
-					break;
+			}else {
+					document.getElementById('loader').src="images/error-icon.png";
+					setTimeout(function() { document.getElementById('loader').style.display="none"; }, 1000);
 			}
 		}
 	};
