@@ -73,7 +73,7 @@ chrome.tabs.onUpdated.addListener(function(a, b, tab) {  //встраивани�
 	}
 });
 
-var timer=chrome.alarms.create("timeUp", {periodInMinutes: 0.5}); //таймер обновления
+var timer=chrome.alarms.create("timeUp", {periodInMinutes: 1.5}); //таймер обновления
 
 chrome.alarms.onAlarm.addListener(function(al) {
 	var xhr = new XMLHttpRequest();
