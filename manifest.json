@@ -26,7 +26,7 @@
 	}],
 
 	"background": {
-		"scripts": ["js/back.js"]
+		"scripts": ["js/functions.js", "js/back.js"]
 	},
 
 	"icons": {
