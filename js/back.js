@@ -75,30 +75,13 @@ chrome.tabs.onUpdated.addListener(function(a, b, tab) {  //встраивани�
 
 var timer=chrome.alarms.create("timeUp", {periodInMinutes: 0.1}); //таймер обновления
 
-/*function onUp(data)
+function onUp(data)
 {
-	grot.set('tmpNumber', grot.get('tmpNumber')+(data[1].id-grot.get('tmp')) );
-	grot.set('tmp', data[1].id);
-	if(grot.get('tmpNumber')>0) { chrome.browserAction.setBadgeText({text: ""+grot.get('tmpNumber') }); }
-	alert(grot.get('tmpNumber'));
-	//grot.get > 4 ? alert(5) : alert(4);
-}*/
+	var delta=data[1].id-grot.get('feed')['data'][1].id;
+	(delta > 0) ? chrome.browserAction.setBadgeText({text: ""+delta }) : chrome.browserAction.setBadgeText({text: "" });
+}
 
 chrome.alarms.onAlarm.addListener(function(al) {
-	//updateData(true, onUp);
-	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "http://youcomedy.me/commentfeed", true);
-	xhr.onreadystatechange = function() {
-		if(xhr.status == 200)
-		{
-			var tmpData=JSON.parse(xhr.responseText);
-			var lastData=grot.get('feed');
-			if(tmpData.data[1].id != lastData.data[1].id)
-			{
-				chrome.browserAction.setBadgeText({text: ""+(tmpData.data[1].id-lastData.data[1].id) });
-			}
-		}
-	}
-	xhr.send();
+	updateData(true, 'tmp', onUp);
 });
 

@@ -40,19 +40,30 @@ function t(s, d){
 	return s;
 }
 
-function updateData(init, updVw){
+function onError()
+{
+	document.getElementById('loader').src="images/error-icon.png";
+	setTimeout(function() { document.getElementById('loader').style.display="none"; }, 1000);
+}
+
+function updateData(init, from, updVw, err){
 	var xhr = new XMLHttpRequest;
 	xhr.open('GET', 'http://youcomedy.me/commentfeed', true);
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState == 4){
 			if(xhr.status==200){
-					grot.set('feed', xhr.responseText);
-					if(updVw) { init && updVw(grot.get('feed')['data']); }
-					chrome.browserAction.setBadgeText({text: ""});
-					document.getElementById('loader').style.display="none";
+					grot.set(from, xhr.responseText);
+					if(updVw) { init && updVw(grot.get(from)['data']); }
+					//chrome.browserAction.setBadgeText({text: ""});
+					try 
+					{
+						document.getElementById('loader').style.display="none";
+					}catch(e)
+					{
+						//nothing
+					}
 			}else {
-					document.getElementById('loader').src="images/error-icon.png";
-					setTimeout(function() { document.getElementById('loader').style.display="none"; }, 1000);
+					if(err) { err() };
 			}
 		}
 	};
@@ -64,6 +75,7 @@ function updateView(data){
 	var i, len;
 	
 	if (data){
+		chrome.browserAction.setBadgeText({text: ""});
 		for (i = 0, len = data.length; i < len; i++){
 			text += t(feedTmpl, {
 				username: data[i]['username'],
@@ -83,6 +95,6 @@ function updateFeed(init){
 	var data = grot.get('feed') || {};
 	data = data['data'];
 	data && updateView(data);
-	updateData(init, updateView);
+	updateData(init, 'feed', updateView, onError );
 }
 
