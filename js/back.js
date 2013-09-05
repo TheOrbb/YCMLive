@@ -24,7 +24,7 @@ function gen() //открывает новую вкладку youcomedy.me/add �
 var parent = chrome.contextMenus.create({"title": "Добавить шутку в YouComedy.Me", "contexts" : ["image", "selection"], "type" : "normal", "onclick": gen()}); //создание кнопки в контекстном меню бразуера
 
 chrome.tabs.onUpdated.addListener(function(a, b, tab) {  //встраивание кнопок добавления на YouTube и Coub
-	var YouTubeLink = new RegExp("^http\://www.youtube.com/watch\?"); //регулярка, соответствующаяя ютубу
+	var YouTubeLink = new RegExp("^(http|https)\://www.youtube.com/watch\?"); //регулярка, соответствующаяя ютубу
 	if(YouTubeLink.test(tab.url)) //если ютуб
 	{
 		if(b.status=="complete") { //после полной загрузки страницы встроить кнопку (код лежит в js/YoutubeToYCM.js)
