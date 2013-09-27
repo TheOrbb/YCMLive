@@ -102,6 +102,31 @@ chrome.tabs.onUpdated.addListener(function(a, b, tab) {  //встраивани�
 		}
 	}
 	//----/Vk----
+	//----Vimeo----
+	var VimeoLink = new RegExp("^(http|https)\://vimeo.com/[0-9]");
+	if(VimeoLink.test(tab.url))
+	{
+		if(b.status=="complete") {
+			chrome.tabs.executeScript(tab.id, {file: "js/VImeoToYCM.js", runAt: "document_end"});
+		}
+	}
+	var Vimeo2YCM = new RegExp("^(http|https)\://add2ycm.vimeo.com/");
+	if(Vimeo2YCM.test(tab.url))
+	{
+		var tmpReg = new RegExp("()add2ycm.()"); //восстанавливаем ссылку на добавление vk в стандартный вид
+		var ur=tab.url.replace(tmpReg, "$1$2");
+
+		if(b.status=="complete") //при загрузке закрыть эту вкладку и открыть новую вкладку youcumedy.me/add и вставить туда ссылку на vk
+		{
+			chrome.tabs.create({url: "http://youcomedy.me/add"}, function(tab) {
+				var t="document.getElementById('upload-input-link').value='"+ur+"'; ";
+				t=t+"document.getElementById('upload-submit-btn').click();"
+				chrome.tabs.executeScript(tab.id, {code: t, runAt: "document_end"});
+			});
+			chrome.tabs.remove(tab.id, function() {});
+		}
+	}
+	//----/Vimeo----
 });
 
 var timer=chrome.alarms.create("timeUp", {periodInMinutes: 1.5}); //таймер обновления
