@@ -82,7 +82,6 @@ chrome.tabs.onUpdated.addListener(function(a, b, tab) {  //встраивани�
 	if(VkLink.test(tab.url))
 	{
 		if(b.status=="complete") {
-			//alert('vk');
 			chrome.tabs.executeScript(tab.id, {file: "js/VkToYCM.js", runAt: "document_end"});
 		}
 	}
