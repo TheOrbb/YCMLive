@@ -1,8 +1,9 @@
 // js-скрипт, содержащий функции обновления "прямого эфира"
 
+var bg = chrome.extension.getBackgroundPage();
+
 (function(){
 
-var bg = chrome.extension.getBackgroundPage();
 var setInterval = bg.setInterval;
 var console = bg.console;
 var updateInterval;
@@ -99,4 +100,11 @@ function updateFeed(init){
 updateFeed(true);
 updateInterval = setInterval(updateFeed, 15000);
 
+
 })();
+
+var LP=document.getElementById("longPost");
+LP.innerHTML="<button id='longBtn'>Сделать длиннопост</button>";
+document.getElementById("longBtn").onclick=function() {
+	bg.open("longPost.html");
+}

@@ -21,7 +21,47 @@ function gen() //открывает новую вкладку youcomedy.me/add �
 	}
 }
 
-var parent = chrome.contextMenus.create({"title": "Добавить шутку в YouComedy.Me", "contexts" : ["image", "selection"], "type" : "normal", "onclick": gen()}); //создание кнопки в контекстном меню бразуера
+function toLongPost()
+{
+	return function(info, tab)
+	{
+		var data = new Array();
+		if(localStorage.getItem("longStore")==null)
+		{
+			data.push(info.srcUrl);
+			localStorage["longStore"]=JSON.stringify(data);
+		}else
+		{
+			data=JSON.parse(localStorage.getItem("longStore"));
+			if(data.indexOf(info.srcUrl)==-1)
+			{
+				data.push(info.srcUrl);
+				localStorage["longStore"]=JSON.stringify(data);
+			}
+		}
+	}
+}
+
+var parent = chrome.contextMenus.create({
+	title: "YouComedy.Me", 
+	contexts : ["image", "selection"]
+}); //создание кнопки в контекстном меню бразуера
+
+chrome.contextMenus.create({
+	parentId: parent,
+	title: "Добавить шутку",
+	contexts : ["image", "selection"],
+	type : "normal",
+	onclick: gen()
+});
+
+chrome.contextMenus.create({
+	parentId: parent,
+	title: "Добавить в длиннопост",
+	contexts : ["image"],
+	type : "normal",
+	onclick: toLongPost()
+});
 
 chrome.tabs.onUpdated.addListener(function(a, b, tab) {  //встраивание кнопок добавления на YouTube и Coub и Vk
 	//----YouTube----
