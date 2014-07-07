@@ -99,6 +99,9 @@ function countOfStore()
 
 function renderLost()
 {
+	ctx.textAlign="center";
+	wrapText(ctx, "Загрузка...", cc.width/2, 25, cc.width, lineHeight); //сообщение о загрузке данных
+
 	var imgData = new Array();
 	var base = document.getElementById('files').childNodes;
 	var count=0, collect=countOfStore()+1;
@@ -222,7 +225,7 @@ function setFunc() {
 
 var data = new Array();
 
-if(localStorage['longStore']==null)
+if(localStorage['longStore']==null || localStorage['longStore']=='')
 {
 	data = [];
 }else
@@ -278,6 +281,7 @@ document.getElementById('creatOpen').onclick = function() {
 	var temp = document.createElement('a');
 	temp.href=cc.toDataURL();
 	temp.target="_blank";
+	localStorage['longStore']='';
 	temp.click();
 }
 
@@ -285,6 +289,7 @@ document.getElementById('creatLoad').onclick = function() {
 	var temp = document.createElement('a');
 	temp.href=cc.toDataURL();
 	temp.download = "Длиннопост.png";
+	localStorage['longStore']='';
 	temp.click();
 }
 

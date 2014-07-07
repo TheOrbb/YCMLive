@@ -26,7 +26,7 @@ function toLongPost()
 	return function(info, tab)
 	{
 		var data = new Array();
-		if(localStorage.getItem("longStore")==null)
+		if(localStorage.getItem("longStore")==null || localStorage.getItem("longStore")=='')
 		{
 			data.push(info.srcUrl);
 			localStorage["longStore"]=JSON.stringify(data);

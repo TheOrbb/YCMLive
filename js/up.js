@@ -103,8 +103,19 @@ updateInterval = setInterval(updateFeed, 15000);
 
 })();
 
+function countOfPosts()
+{
+	if(localStorage['longStore']==null || localStorage['longStore']=='')
+	{
+		return 0;
+	}else
+	{
+		return JSON.parse(localStorage['longStore']).length;
+	}
+}
+
 var LP=document.getElementById("longPost");
-LP.innerHTML="<button id='longBtn'>Сделать длиннопост</button>";
+LP.innerHTML="<button id='longBtn'>Сделать длиннопост ("+countOfPosts()+")</button>";
 document.getElementById("longBtn").onclick=function() {
 	bg.open("longPost.html");
 }
