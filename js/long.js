@@ -279,18 +279,19 @@ document.getElementById('addText').onclick = function() {
 
 document.getElementById('creatOpen').onclick = function() {
 	var temp = document.createElement('a');
-	temp.href=cc.toDataURL();
+	temp.href=Canvas2Image.saveAsJPEG(cc, cc.width, cc.height);
 	temp.target="_blank";
 	localStorage['longStore']='';
 	temp.click();
 }
 
 document.getElementById('creatLoad').onclick = function() {
+	Canvas2Image.saveAsJPEG(cc, cc.width, cc.height);
 	var temp = document.createElement('a');
-	temp.href=cc.toDataURL();
-	temp.download = "Длиннопост.png";
-	localStorage['longStore']='';
+	temp.href=Canvas2Image.saveAsJPEG(cc, cc.width, cc.height);
+	temp.download = "Длиннопост.jpeg";
 	temp.click();
+	localStorage['longStore']='';
 }
 
 loadFromStorage();
