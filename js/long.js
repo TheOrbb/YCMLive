@@ -11,23 +11,23 @@ function getFontHeight(font) {
 function wrapText(context, text, x, y, maxWidth, lineHeight) {
     var words = text.split(' ');
     var line = '';
- 
+
     for(var i = 0; i < words.length; i++) {
- 
+
         var testLine = line + words[i] + ' ';
         var testWidth = context.measureText(testLine).width;
- 
+
         if(testWidth > maxWidth) {
- 
+
                 context.fillText(line, x, y);
                 line = words[i] + ' ';
                 y += lineHeight;
         }
         else
             line = testLine;
- 
+
     }
- 
+
         context.fillText(line, x, y);
 	return y+lineHeight;
 }
@@ -141,7 +141,7 @@ function renderLost()
 
 	//плашка
 	var plash = new Image();
-	plash.src="images/plash.jpg";
+	plash.src="images/plash.png";
 	plash.onload=function(){
 		count++;
 		if(count==collect)
